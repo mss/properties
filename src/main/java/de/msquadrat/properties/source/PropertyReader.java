@@ -1,4 +1,4 @@
-package de.msquadrat.properties.reader;
+package de.msquadrat.properties.source;
 
 import java.io.Closeable;
 

@@ -2,9 +2,9 @@ package de.msquadrat.properties;
 
 import java.util.Map;
 
-import de.msquadrat.properties.reader.PropertyFileReader;
-import de.msquadrat.properties.reader.PropertySources;
-import de.msquadrat.properties.reader.PropertyStringReader;
+import de.msquadrat.properties.source.PropertyFileReader;
+import de.msquadrat.properties.source.PropertySources;
+import de.msquadrat.properties.source.PropertyStringReader;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.Argument;
 import net.sourceforge.argparse4j.inf.ArgumentAction;
