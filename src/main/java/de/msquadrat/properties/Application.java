@@ -5,7 +5,14 @@ public class Application {
         new Application(args);
     }
     
+    
+    private final ApplicationArguments args;
+    
     protected Application(String[] args) throws Exception {
-        throw new RuntimeException("Not implemented.");
+        this.args = new ApplicationArguments(args);
+    }
+    
+    public static String getName() {
+        return "properties";
     }
 }
