@@ -1,6 +1,10 @@
 package de.msquadrat.properties;
 
+import java.io.IOException;
 import java.util.Properties;
+
+import de.msquadrat.properties.source.PropertySource;
+import de.msquadrat.properties.source.PropertySources;
 
 public class Application implements Runnable {
     public static void main(String[] args) throws Exception {
@@ -21,7 +25,16 @@ public class Application implements Runnable {
     }
 
     public void run() {
+        PropertySources sources = args.getSources();
+        while (sources.peek() != null) {
+            try (PropertySource source = sources.poll()) {
+                props.load(source.toReader());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         
+        System.err.println(props);
     }
     
     
