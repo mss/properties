@@ -1,5 +1,6 @@
 package de.msquadrat.properties;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -42,7 +43,7 @@ public class Application implements Runnable {
                 props.load(source.toReader());
             }
             catch (IOException e) {
-                throw new RuntimeException(e);
+                die("Error reading properties: " + e.getMessage());
             }
         }
         
