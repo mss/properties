@@ -1,6 +1,5 @@
 package de.msquadrat.properties;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +9,6 @@ import de.msquadrat.properties.reader.PropertyFileReader;
 import de.msquadrat.properties.reader.PropertyReader;
 import de.msquadrat.properties.reader.PropertyStringReader;
 import net.sourceforge.argparse4j.ArgumentParsers;
-import net.sourceforge.argparse4j.impl.Arguments;
 import net.sourceforge.argparse4j.inf.Argument;
 import net.sourceforge.argparse4j.inf.ArgumentAction;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
@@ -68,11 +66,7 @@ public class ApplicationArguments {
         public void run(ArgumentParser parser, Argument arg,
                 Map<String, Object> attrs, String flag, Object value)
                 throws ArgumentParserException {
-            try {
-                ApplicationArguments.this.sources.add(new PropertyFileReader((String)value));
-            } catch (FileNotFoundException e) {
-                throw new ArgumentParserException(e, parser);
-            }
+            ApplicationArguments.this.sources.add(new PropertyFileReader((String)value));
         }
         
     }

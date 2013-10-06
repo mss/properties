@@ -19,7 +19,6 @@ package de.msquadrat.properties.reader;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.commons.io.input.AutoCloseInputStream;
@@ -56,12 +55,8 @@ public class LazyFileInputStream extends AutoCloseInputStream {
      * @param file the file
      * @throws java.io.FileNotFoundException
      */
-    public LazyFileInputStream(File file)
-            throws FileNotFoundException {
+    public LazyFileInputStream(File file) {
         super(null);
-        if (!file.canRead()) {
-            throw new FileNotFoundException(file.getPath());
-        }
         this.file = file;
         this.fd = null;
     }
@@ -86,7 +81,7 @@ public class LazyFileInputStream extends AutoCloseInputStream {
      * @param name
      * @throws java.io.FileNotFoundException
      */
-    public LazyFileInputStream(String name) throws FileNotFoundException {
+    public LazyFileInputStream(String name) {
         this(new File(name));
     }
 
