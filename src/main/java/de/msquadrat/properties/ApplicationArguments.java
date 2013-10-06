@@ -2,9 +2,7 @@ package de.msquadrat.properties;
 
 import java.util.Map;
 
-import de.msquadrat.properties.source.PropertyFileSource;
 import de.msquadrat.properties.source.PropertySources;
-import de.msquadrat.properties.source.PropertyStringSource;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.Argument;
 import net.sourceforge.argparse4j.inf.ArgumentAction;
@@ -48,7 +46,7 @@ public class ApplicationArguments {
         }
         catch (ArgumentParserException e) {
             parser.handleError(e);
-            System.exit(1);
+            Application.die();
         }
     }
     

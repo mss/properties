@@ -15,6 +15,16 @@ public class Application implements Runnable {
         return "properties";
     }
     
+    public static void die() {
+        die(null);
+    }
+    
+    public static void die(String message) {
+        if (message != null)
+            System.err.println(message);
+        System.exit(1);
+    }
+    
     
     private final Properties props;
     private final ApplicationArguments args;
@@ -24,12 +34,14 @@ public class Application implements Runnable {
         this.props = new Properties();
     }
 
+    
     public void run() {
         PropertySources sources = args.getSources();
         while (sources.peek() != null) {
             try (PropertySource source = sources.poll()) {
                 props.load(source.toReader());
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
