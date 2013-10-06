@@ -28,11 +28,21 @@ public class ApplicationArguments {
                 .description("Read *.properties files from the command line.");
         parser.addArgument("filename")
                 .metavar("filename...")
-                .action(new FilenameArgumentAction())
+                .action(new SimpleArgumentAction() {
+                    @Override
+                    public void run(String value) throws ArgumentParserException {
+                        sources.add(new PropertyFileReader(value));
+                    }
+                })
                 .help("properties file to parse");
         parser.addArgument("-D")
                 .metavar("name=value")
-                .action(new SystemPropertyArgumentAction())
+                .action(new SimpleArgumentAction() {
+                    @Override
+                    public void run(String value) throws ArgumentParserException {
+                        sources.add(new PropertyStringReader(value));
+                    }
+                })
                 .help("set a system property");
         
         Namespace opts = null;
@@ -51,8 +61,27 @@ public class ApplicationArguments {
     }
     
     
-    private class FilenameArgumentAction implements ArgumentAction {
-
+    private abstract class SimpleArgumentAction implements ArgumentAction {
+        private ArgumentParser parser;
+        private Argument arg;
+        
+        @SuppressWarnings("unused")
+        protected void fail(String message) throws ArgumentParserException {
+            throw new ArgumentParserException(message, parser, arg);
+        }
+        
+        public abstract void run(String value) throws ArgumentParserException;
+        
+        @Override
+        public void run(ArgumentParser parser, Argument arg,
+                Map<String, Object> attrs, String flag, Object value)
+                throws ArgumentParserException {
+            this.parser = parser;
+            this.arg = arg;
+            
+            run((String)value);
+        }
+        
         @Override
         public boolean consumeArgument() {
             return true;
@@ -61,34 +90,5 @@ public class ApplicationArguments {
         @Override
         public void onAttach(Argument arg0) {
         }
-
-        @Override
-        public void run(ArgumentParser parser, Argument arg,
-                Map<String, Object> attrs, String flag, Object value)
-                throws ArgumentParserException {
-            ApplicationArguments.this.sources.add(new PropertyFileReader((String)value));
-        }
-        
     }
-    
-    private class SystemPropertyArgumentAction implements ArgumentAction {
-
-        @Override
-        public boolean consumeArgument() {
-            return true;
-        }
-
-        @Override
-        public void onAttach(Argument arg0) {
-        }
-
-        @Override
-        public void run(ArgumentParser parser, Argument arg,
-                Map<String, Object> attrs, String flag, Object value)
-                throws ArgumentParserException {
-            ApplicationArguments.this.sources.add(new PropertyStringReader((String)value));
-        }
-        
-    }
-
 }
