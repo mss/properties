@@ -1,1 +1,9 @@
 target/
+.project
+.classpath
+.settings/
+release.properties
+pom.xml.next
+pom.xml.releaseBackup
+pom.xml.tag
+*.swp
