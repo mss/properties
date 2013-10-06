@@ -1,12 +1,9 @@
 package de.msquadrat.properties;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 import de.msquadrat.properties.reader.PropertyFileReader;
-import de.msquadrat.properties.reader.PropertyReader;
+import de.msquadrat.properties.reader.PropertySources;
 import de.msquadrat.properties.reader.PropertyStringReader;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.Argument;
@@ -16,11 +13,11 @@ import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
 
 public class ApplicationArguments {
-    private final List<PropertyReader> sources;
+    private final PropertySources sources;
     
     
     public ApplicationArguments(String[] args) {
-        sources = new ArrayList<>();
+        sources = new PropertySources();
         
         ArgumentParser parser = ArgumentParsers.newArgumentParser(
                 Application.getName())
@@ -31,7 +28,7 @@ public class ApplicationArguments {
                 .action(new SimpleArgumentAction() {
                     @Override
                     public void run(String value) throws ArgumentParserException {
-                        sources.add(new PropertyFileReader(value));
+                        sources.addFile(value);
                     }
                 })
                 .help("properties file to parse");
@@ -40,7 +37,7 @@ public class ApplicationArguments {
                 .action(new SimpleArgumentAction() {
                     @Override
                     public void run(String value) throws ArgumentParserException {
-                        sources.add(new PropertyStringReader(value));
+                        sources.addString(value);
                     }
                 })
                 .help("set a system property");
@@ -56,8 +53,8 @@ public class ApplicationArguments {
     }
     
     
-    public List<PropertyReader> getSources() {
-        return Collections.unmodifiableList(sources);
+    public PropertySources getSources() {
+        return sources;
     }
     
     
