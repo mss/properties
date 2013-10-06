@@ -1,5 +1,7 @@
 package de.msquadrat.properties;
 
+import java.util.List;
+
 public class Application implements Runnable {
     public static void main(String[] args) throws Exception {
         new Application(args).run();
@@ -17,7 +19,7 @@ public class Application implements Runnable {
     }
 
     public void run() {
-        
+        List<String> filenames = args.getFilenames();
     }
     
     
