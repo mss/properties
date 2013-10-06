@@ -34,7 +34,7 @@
 
   <properties>
     <application.packageName>${project.groupId}</application.packageName>
-    <application.mainClass>${application.packageName}.Main</application.mainClass>
+    <application.mainClass>${application.packageName}.Application</application.mainClass>
 
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
