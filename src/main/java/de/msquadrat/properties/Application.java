@@ -1,6 +1,6 @@
 package de.msquadrat.properties;
 
-import java.util.List;
+import java.util.Properties;
 
 public class Application implements Runnable {
     public static void main(String[] args) throws Exception {
@@ -12,14 +12,16 @@ public class Application implements Runnable {
     }
     
     
+    private final Properties props;
     private final ApplicationArguments args;
     
     protected Application(String[] args) throws Exception {
         this.args = new ApplicationArguments(args);
+        this.props = new Properties();
     }
 
     public void run() {
-        List<String> filenames = args.getFilenames();
+        
     }
     
     

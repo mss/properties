@@ -36,6 +36,7 @@
     <application.packageName>${project.groupId}</application.packageName>
     <application.mainClass>${application.packageName}.Application</application.mainClass>
 
+    <commons-io.version>2.4</commons-io.version>
     <argparse4j.version>0.4.1</argparse4j.version>
 
     <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
@@ -53,9 +54,15 @@
   <dependencies>
 
     <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons-io.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>net.sourceforge.argparse4j</groupId>
       <artifactId>argparse4j</artifactId>
-      <version>0.4.1</version>
+      <version>${argparse4j.version}</version>
     </dependency>
 
     <dependency>
