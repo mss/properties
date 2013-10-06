@@ -1,8 +1,12 @@
 package de.msquadrat.properties;
 
-public class Application {
+public class Application implements Runnable {
     public static void main(String[] args) throws Exception {
-        new Application(args);
+        new Application(args).run();
+    }
+    
+    public static String getName() {
+        return "properties";
     }
     
     
@@ -11,8 +15,10 @@ public class Application {
     protected Application(String[] args) throws Exception {
         this.args = new ApplicationArguments(args);
     }
-    
-    public static String getName() {
-        return "properties";
+
+    public void run() {
+        
     }
+    
+    
 }
