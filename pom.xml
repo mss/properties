@@ -8,18 +8,60 @@
   <packaging>jar</packaging>
 
   <name>properties</name>
-  <url>http://maven.apache.org</url>
+  <description>Read *.properties files from the command line</description>
+  <url>https://github.com/mss/properties</url>
+  <inceptionYear>2013</inceptionYear>
+
+  <developers>
+    <developer>
+      <name>Malte S. Stretz</name>
+      <id>mss</id>
+      <url>http://msquadrat.de/</url>
+    </developer>
+  </developers>
+  <contributors>
+  </contributors>
+
+  <scm>
+    <url>https://github.com/mss/properties</url>
+    <connection>scm:git:https://github.com/mss/properties.git</connection>
+    <developerConnection>scm:git:git@github.com/mss/properties.git</developerConnection>
+  </scm>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/mss/properties/issues</url>
+  </issueManagement>
 
   <properties>
+    <application.packageName>${project.groupId}</application.packageName>
+    <application.mainClass>${application.packageName}.Main</application.mainClass>
+
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
   <dependencies>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
+
+  <build>
+    <plugins>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+    </plugins>
+  </reporting>
+
 </project>
